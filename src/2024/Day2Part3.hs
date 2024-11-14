@@ -44,6 +44,7 @@ countOccurrencesOfAllWordsHoriz yCoord words text = S.unions . map (\word -> cou
 countOccurrencesOfAllWordsVert :: Int -> [String] -> String -> S.Set Coord
 countOccurrencesOfAllWordsVert yCoord words text = S.unions . map (\word -> countOccurrencesOfWordVert yCoord word text) $ words
 
+-- should probably rename coords or something as this is used on a transposed grid, oh well
 countOccurrencesOfWordVert :: Int -> String -> String -> S.Set Coord
 countOccurrencesOfWordVert yCoord word =
   S.fromList
@@ -62,12 +63,13 @@ countOccurrencesOfWordHoriz yCoord word text =
     . map (\xCoord -> (xCoord, yCoord))
     . concatMap (map fst)
     . filter (\cand -> (equalForward . map snd $ cand) || (equalBackwards . map snd $ cand))
-    $ doubleText
+    $ textWithOverFlow
   where
     equalForward = (== word)
     equalBackwards = (== word) . reverse
     -- just doubling the text for ease, but I could get away with using length of word couldn't I...
-    doubleText = sliding (length word) . concat . replicate 2 . zip [1 ..] $ text
+    textWithOverFlow = sliding (length word) (zippedText ++ take (length word) zippedText)
+    zippedText = zip [1 ..] text
 
 sliding :: Int -> [a] -> [[a]]
 sliding n = takeWhile ((n ==) . length) . map (take n) . tails
