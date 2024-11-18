@@ -1,8 +1,8 @@
 module Day4Part3 (solve) where
 
-import Data.List (sort, sortOn)
+import Data.List (sort)
 
-solve :: IO [(Integer, Integer)]
+solve :: IO Integer
 solve = solve' <$> getInput
 
 -- I figured the ideal height would be the average height of the nails
@@ -18,23 +18,21 @@ solve = solve' <$> getInput
 -- I'm starting to think that this might actually just be the median
 -- after all that works for my extreme example above, the median is 1, which works for the ideal height
 -- ok so I just tried this using median and that doesn't work either!!!
-solve' :: [Integer] -> [(Integer, Integer)]
-solve' xs = take 20 . sortOn snd . map (\pseudoAv -> (pseudoAv, sum . map (\x -> abs (x - pseudoAv)) $ xs)) . eitherSide $ averageHeight
+solve' :: [Integer] -> Integer
+solve' xs = sum . map (\x -> abs (x - med)) $ xs
   where
-    averageHeight = median xs
-
-eitherSide :: Integer -> [Integer]
-eitherSide x = [x - 2000 .. x + 2000]
+    med = median xs
 
 median :: [Integer] -> Integer
 median xs
-  | odd len = sorted !! mid
+  | odd len = oddMedian
   | otherwise = evenMedian
   where
     sorted = sort xs
     len = length sorted
     mid = len `div` 2
-    evenMedian = (sorted !! mid + sorted !! (mid + 1)) `div` 2
+    oddMedian = sorted !! mid
+    evenMedian = (sorted !! (mid - 1) + sorted !! mid) `div` 2
 
 getInput :: IO [Integer]
 getInput = map read . lines <$> readFile "./fixtures/day4part3.txt"
