@@ -1,5 +1,6 @@
 {-# HLINT ignore "Use tuple-section" #-}
-module Day2Part3 where
+
+module Day2Part3 (solve) where
 
 import Data.List (tails)
 import Data.List.Extra (transpose)
@@ -10,7 +11,7 @@ import Prelude hiding (words)
 
 -- kinda like part 2 but I'll just do some transposes and stuff...
 -- oh and modular stuff too because of the wrap around...
--- OR I could do what I did in that wordsearch problem a while back. IDK
+-- OR I could do what I did in that word search problem a while back. IDK
 
 type Coord = (Int, Int)
 
