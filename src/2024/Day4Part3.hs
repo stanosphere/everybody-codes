@@ -1,6 +1,6 @@
 module Day4Part3 (solve) where
 
-import Data.List (sortOn)
+import Data.List (sort, sortOn)
 
 solve :: IO [(Integer, Integer)]
 solve = solve' <$> getInput
@@ -16,16 +16,25 @@ solve = solve' <$> getInput
 -- so my assumption of taking an average and assuming that's the best height is flawed
 -- instead I suppose we should think about choosing an ideal height such that the total "distance" is minimised
 -- I'm starting to think that this might actually just be the median
+-- after all that works for my extreme example above, the median is 1, which works for the ideal height
+-- ok so I just tried this using median and that doesn't work either!!!
 solve' :: [Integer] -> [(Integer, Integer)]
-solve' xs = take 20 . sortOn snd . map (\pseudoAv -> (pseudoAv - averageHeight, sum . map (\x -> abs (x - pseudoAv)) $ xs)) . eitherSide $ averageHeight
+solve' xs = take 20 . sortOn snd . map (\pseudoAv -> (pseudoAv, sum . map (\x -> abs (x - pseudoAv)) $ xs)) . eitherSide $ averageHeight
   where
-    averageHeight = average xs
+    averageHeight = median xs
 
 eitherSide :: Integer -> [Integer]
 eitherSide x = [x - 2000 .. x + 2000]
 
-average :: [Integer] -> Integer
-average xs = sum xs `div` (toInteger . length $ xs)
+median :: [Integer] -> Integer
+median xs
+  | odd len = sorted !! mid
+  | otherwise = evenMedian
+  where
+    sorted = sort xs
+    len = length sorted
+    mid = len `div` 2
+    evenMedian = (sorted !! mid + sorted !! (mid + 1)) `div` 2
 
 getInput :: IO [Integer]
 getInput = map read . lines <$> readFile "./fixtures/day4part3.txt"
