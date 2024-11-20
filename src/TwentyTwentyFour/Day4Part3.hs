@@ -1,4 +1,4 @@
-module Day4Part3 (solve) where
+module TwentyTwentyFour.Day4Part3 (solve) where
 
 import Data.List (sort)
 

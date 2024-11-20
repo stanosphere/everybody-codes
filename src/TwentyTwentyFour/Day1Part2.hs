@@ -1,4 +1,4 @@
-module Day1Part2 (solve) where
+module TwentyTwentyFour.Day1Part2 (solve) where
 
 import Data.List.Split (chunksOf)
 

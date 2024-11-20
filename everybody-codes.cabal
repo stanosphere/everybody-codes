@@ -23,6 +23,18 @@ source-repository head
   location: https://github.com/githubuser/everybody-codes
 
 library
+  exposed-modules:
+      TwentyTwentyFour.Day1Part1
+      TwentyTwentyFour.Day1Part2
+      TwentyTwentyFour.Day1Part3
+      TwentyTwentyFour.Day2Part1
+      TwentyTwentyFour.Day2Part2
+      TwentyTwentyFour.Day2Part3
+      TwentyTwentyFour.Day3Part1
+      TwentyTwentyFour.Day4Part1
+      TwentyTwentyFour.Day4Part3
+      TwentyTwentyFour.Day6Part1
+      TwentyTwentyFour.Day6Part2
   other-modules:
       Paths_everybody_codes
   autogen-modules:

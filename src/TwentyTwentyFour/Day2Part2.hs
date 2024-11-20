@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
 {-# HLINT ignore "Use tuple-section" #-}
-module Day2Part2 where
+module TwentyTwentyFour.Day2Part2 where
 
 import Data.List (tails)
 import Data.List.Split (splitOn)

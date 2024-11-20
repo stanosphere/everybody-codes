@@ -1,6 +1,6 @@
 {-# HLINT ignore "Use tuple-section" #-}
 
-module Day2Part3 (solve) where
+module TwentyTwentyFour.Day2Part3 (solve) where
 
 import Data.List (tails)
 import Data.List.Extra (transpose)

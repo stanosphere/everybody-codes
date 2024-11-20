@@ -1,4 +1,4 @@
-module Day3Part1 (solve) where
+module TwentyTwentyFour.Day3Part1 (solve) where
 
 import Data.List (find)
 import qualified Data.Map as M (Map, elems, filter, fromList, insert, keys, lookup, null)

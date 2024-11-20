@@ -1,4 +1,4 @@
-module Day1Part1 (solve) where
+module TwentyTwentyFour.Day1Part1 (solve) where
 
 solve :: IO Int
 solve = fmap getTotalPotions <$> readFile $ "./fixtures/day1part1.txt"
