@@ -33,8 +33,12 @@ solvePart2 = do
 
 solvePart3 = do
   inp <- getInput "./fixtures/day11part3.txt"
-  let mappingFn = applyMapping . parseMapping $ inp
-  return ()
+  let mapping = parseMapping $ inp
+  let mappingFn = applyMapping mapping
+  let startingTermites = map fst mapping
+  let twentieth = (!! 20) . map countAllTermites . iterate mappingFn . (`M.singleton` 1)
+  let allResults = map twentieth startingTermites
+  return (maximum allResults - minimum allResults)
 
 countAllTermites :: TermiteCollection -> Int
 countAllTermites = sum . M.elems
