@@ -24,6 +24,7 @@ source-repository head
 
 library
   exposed-modules:
+      TwentyTwentyFour.Day11
       TwentyTwentyFour.Day1Part1
       TwentyTwentyFour.Day1Part2
       TwentyTwentyFour.Day1Part3
