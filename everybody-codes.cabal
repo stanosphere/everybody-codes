@@ -26,6 +26,7 @@ library
   exposed-modules:
       TwentyTwentyFour.Day11
       TwentyTwentyFour.Day14
+      TwentyTwentyFour.Day17
       TwentyTwentyFour.Day1Part1
       TwentyTwentyFour.Day1Part2
       TwentyTwentyFour.Day1Part3
@@ -47,6 +48,7 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , equivalence
     , extra
     , split
   default-language: Haskell2010

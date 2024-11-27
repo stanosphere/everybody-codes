@@ -55,7 +55,7 @@ shouldStop (GridState g prevMaxDepth) = M.null . M.filter (== prevMaxDepth) $ g
 getInitialGrid :: [String] -> Grid
 getInitialGrid xs =
   M.fromList
-    [ ((x, y), 1 :: Int)
+    [ ((x, y), 1)
       | (y, rows) <- zipWithIndex xs,
         (x, value) <- zipWithIndex rows,
         value == '#'
