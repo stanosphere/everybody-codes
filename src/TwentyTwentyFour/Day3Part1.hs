@@ -64,4 +64,5 @@ getInitialGrid xs =
     zipWithIndex :: [a] -> [(Int, a)]
     zipWithIndex = zip [0 ..]
 
+getInput :: IO [String]
 getInput = lines <$> readFile "./fixtures/day3part1.txt"
