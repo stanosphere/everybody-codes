@@ -1,7 +1,8 @@
-module TwentyTwentyFour.Day18 (solve') where
+module TwentyTwentyFour.Day18 (solvePart1) where
 
 import Data.List (find)
 import qualified Data.Set as S
+import Debug.Trace (trace)
 
 type Coord = (Int, Int)
 
@@ -14,11 +15,21 @@ data GridState = GS
   }
   deriving (Show)
 
-solve' :: IO (Maybe Int)
-solve' = do
-  inp <- getInput
+solvePart1 :: IO (Maybe Int)
+solvePart1 = do
+  inp <- getInput "./fixtures/day18part1.txt"
   let (grid, palmLocations) = parseInput inp
   let initState = GS (S.delete (0, 1) grid) (S.singleton (0, 1)) 0
+  let res = solve initState palmLocations
+  return res
+
+-- use 22,7 for toy example
+-- i don't feel great about hardcoding these numbers but whatevs
+solvePart2 :: IO (Maybe Int)
+solvePart2 = do
+  inp <- getInput "./fixtures/day18part2.txt"
+  let (grid, palmLocations) = parseInput inp
+  let initState = GS (S.delete (200, 69) . S.delete (0, 1) $ grid) (S.fromList [(0, 1), (200, 69)]) 0
   let res = solve initState palmLocations
   return res
 
@@ -62,5 +73,5 @@ parseInput xs =
           value /= '#'
       ]
 
-getInput :: IO [String]
-getInput = lines <$> readFile "./fixtures/day18part1.txt"
+getInput :: String -> IO [String]
+getInput s = lines <$> readFile s
